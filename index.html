@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pulpas Dionicio</title>
+<style>
+  :root {
+    --orange-900: #9a4a00;
+    --orange-700: #d97706;
+    --orange-500: #f59e0b;
+    --orange-100: #fff3d6;
+    --orange-50: #fffaf0;
+    --slate-900: #111827;
+    --slate-700: #374151;
+    --slate-500: #6b7280;
+    --slate-200: #e5e7eb;
+    --white: #ffffff;
+    --shadow: 0 14px 32px rgba(15, 23, 42, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(180deg, #fffaf3 0%, #f8fafc 100%);
+    color: var(--slate-900);
+    line-height: 1.5;
+    padding-bottom: 120px;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .hero {
+    background: linear-gradient(135deg, #ffb347 0%, #f59e0b 25%, #d97706 65%, #ff8a00 100%);
+    color: var(--white);
+    padding: 2.5rem 1rem 1.5rem;
+  }
+  .hero-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.2rem;
+  }
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    width: fit-content;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.26);
+    padding: 0.45rem 0.95rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .hero h1 {
+    font-size: clamp(2.1rem, 5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 0.7rem;
+  }
+  .hero p {
+    max-width: 780px;
+    color: #fff7e6;
+    font-size: 1.02rem;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 0.8rem;
+  }
+  .btn-primary,
+  .btn-secondary,
+  .btn-wa,
+  .btn-ver {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .btn-wa:hover,
+  .btn-ver:hover { transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--white);
+    color: var(--orange-900);
+    padding: 0.9rem 1.3rem;
+  }
+  .btn-secondary {
+    background: rgba(255,255,255,0.14);
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.24);
+    padding: 0.9rem 1.3rem;
+  }
+
+  .promo-strip {
+    background: var(--orange-100);
+    color: var(--orange-900);
+    border-bottom: 2px solid rgba(181, 83, 9, 0.28);
+    text-align: center;
+    padding: 0.8rem 1rem;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 2rem 1rem 0;
+  }
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    margin: 2rem 0 1rem;
+    color: var(--slate-900);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.2rem;
+  }
+  .card {
+    background: var(--white);
+    border: 1px solid var(--slate-200);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+  }
+  .img-box {
+    position: relative;
+    height: 190px;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+  }
+  .img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tag {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: rgba(124, 45, 18, 0.88);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+  }
+  .card-body {
+    padding: 1rem 1rem 0.75rem;
+  }
+  .card-body h3 {
+    font-size: 1.18rem;
+    color: var(--slate-900);
+    margin-bottom: 0.35rem;
+  }
+  .card-body p {
+    color: var(--slate-500);
+    font-size: 0.9rem;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+    padding: 0.8rem 1rem 1rem;
+    border-top: 1px solid #f4f4f5;
+    background: #fffcf9;
+  }
+  .precio {
+    display: block;
+    font-weight: 800;
+    color: var(--slate-900);
+    font-size: 1rem;
+  }
+  .mayoreo {
+    display: block;
+    font-size: 0.74rem;
+    color: #15803d;
+    font-weight: 700;
+  }
+  .controles {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .btn-menos { background: var(--slate-200); color: var(--slate-700); }
+  .btn-mas { background: linear-gradient(135deg, var(--orange-700), var(--orange-500)); color: var(--white); }
+  .cant {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 800;
+    color: var(--slate-900);
+  }
+
+  .quality-box,
+  .pedido-box {
+    margin-top: 2.2rem;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid var(--slate-200);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 1.4rem;
+  }
+  .quality-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .quality-item {
+    background: var(--orange-50);
+    border: 1px solid #f9d08b;
+    border-radius: 16px;
+    padding: 1rem;
+  }
+  .quality-item strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--orange-900);
+  }
+  .quality-item span {
+    color: var(--slate-500);
+    font-size: 0.92rem;
+  }
+
+  .pedido-box {
+    border: 2px solid rgba(217, 119, 6, 0.55);
+    margin-bottom: 3rem;
+  }
+  .aviso {
+    background: #fff3d6;
+    color: var(--orange-900);
+    border: 1px solid #f9d58d;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 0.8rem 0.95rem;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+  }
+  .aviso-ok {
+    background: #dcfce7;
+    color: #166534;
+    border-color: #86efac;
+  }
+  .item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--slate-200);
+    color: var(--slate-700);
+  }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0 1.2rem;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-weight: 800;
+    color: var(--slate-900);
+  }
+  #total {
+    color: var(--orange-700);
+  }
+  .form-grid {
+    display: grid;
+    gap: 1rem;
+  }
+  .form-group { display: grid; gap: 0.35rem; }
+  .form-group label {
+    font-weight: 700;
+    color: var(--slate-700);
+  }
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 0.8rem 0.9rem;
+    border: 1px solid var(--slate-200);
+    border-radius: 12px;
+    font-size: 1rem;
+    background: var(--white);
+    color: var(--slate-900);
+  }
+  .btn-wa {
+    width: 100%;
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    color: var(--white);
+    padding: 1rem 1.3rem;
+    border: none;
+    font-size: 1.02rem;
+  }
+
+  .barra {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.96);
+    border-top: 2px solid rgba(217, 119, 6, 0.45);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 -8px 30px rgba(15, 23, 42, 0.1);
+    z-index: 50;
+  }
+  .barra-in {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  .barra strong {
+    display: block;
+    color: var(--slate-900);
+    font-size: 0.96rem;
+  }
+  .barra-total {
+    color: var(--orange-700);
+    font-weight: 800;
+    font-size: 1rem;
+  }
+  .btn-ver {
+    background: linear-gradient(135deg, var(--orange-700), var(--orange-500));
+    color: var(--white);
+    padding: 0.75rem 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding-top: 2rem; }
+    .hero-actions { flex-direction: column; }
+    .btn-primary, .btn-secondary, .btn-ver { width: 100%; }
+    .barra-in { align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="brand-badge">Pulpa Natural Premium</span>
+      <div class="hero-copy">
+        <h1>Pulpas Dionicio</h1>
+        <p>Fruta 100% natural, libre de endulzantes, colorantes y conservadores artificiales o adicionales. Todas las pulpas vienen en la presentación de un kilo neto y son de alta calidad premium. Envasada al alto vacío y congelada con estándares de exportación.</p>
+      </div>
+      <div class="hero-actions">
+        <a href="#sabores" class="btn-primary">Ver sabores</a>
+        <a href="#pedido" class="btn-secondary">Solicitar pedido</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="promo-strip">Precio por kilo: $180 MXN • Precio por mayoreo: $150 MXN a partir de 6 kilos</div>
+
+  <main>
+    <section id="sabores">
+      <h2 class="section-title">Sabores disponibles</h2>
+      <div class="grid" id="catalogo"></div>
+    </section>
+
+    <section class="quality-box">
+      <h2 class="section-title">Detalles del producto</h2>
+      <div class="quality-grid">
+        <div class="quality-item"><strong>Presentación</strong><span>Todas las pulpas vienen en la presentación de un kilo neto.</span></div>
+        <div class="quality-item"><strong>Sin aditivos</strong><span>Libres de endulzantes, colorantes y conservadores artificiales o adicionales.</span></div>
+        <div class="quality-item"><strong>Calidad premium</strong><span>Es una pulpa de calidad premium.</span></div>
+        <div class="quality-item"><strong>Envasado</strong><span>Envasada al alto vacío y congelada con estándares de exportación.</span></div>
+      </div>
+    </section>
+
+    <section id="pedido" class="pedido-box">
+      <h2 class="section-title" style="margin-top:0;">Tu pedido</h2>
+      <div id="aviso" class="aviso">Agrega 6 kilos o más para activar precio de mayoreo ($150 MXN/kg).</div>
+      <div id="resumen"><p style="color:#6b7280;">Selecciona al menos 1 kilo arriba para ver el desglose.</p></div>
+      <div class="total-row"><span>Total estimado:</span><span id="total">$0 MXN</span></div>
+
+      <div class="form-grid">
+        <div class="form-group"><label>Tu nombre *</label><input type="text" id="nombre" placeholder="Ej. María López"></div>
+
+        <div class="form-group">
+          <label>Tipo de entrega *</label>
+          <select id="entrega" onchange="document.getElementById('dir-box').style.display = this.value === 'A domicilio' ? 'block' : 'none'">
+            <option value="A domicilio">A domicilio</option>
+            <option value="Para recoger">Para recoger</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="dir-box"><label>Dirección de entrega *</label><input type="text" id="direccion" placeholder="Calle, número, colonia y referencias"></div>
+        <div class="form-group"><label>Indicaciones adicionales (opcional)</label><input type="text" id="notas" placeholder="Ej. Entregar por la tarde..."></div>
+      </div>
+
+      <button type="button" onclick="enviarWA()" class="btn-wa">Enviar pedido por WhatsApp</button>
+    </section>
+  </main>
+
+  <div class="barra">
+    <div class="barra-in">
+      <div><strong id="b-items">0 piezas ($180 c/u)</strong><div id="b-total" style="color:#d97706; font-weight: bold;">$0 MXN</div></div>
+      <a href="#pedido" class="btn-ver">Completar pedido</a>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
