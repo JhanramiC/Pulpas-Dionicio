@@ -1,4 +1,4 @@
-const TELEFONO = "5217226611890";
+const TELEFONO = "5217229130428";
 const sabores = [
   { id: 1, nom: "Maracuyá", img: "maracuya", desc: "Pulpa natural con sabor intenso y aroma tropical." },
   { id: 2, nom: "Guanabana", img: "guanabana", desc: "Pulpa cremosa, suave y con un sabor muy característico." },
